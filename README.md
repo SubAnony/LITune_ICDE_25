@@ -1,11 +1,10 @@
 # LITune VLDB 2025 Setup and Evaluation Guide
 
 
-This is the code repo for Paper **LITune: Tuning Learned Index Using Deep Reinforcement Learning**
+This is the code repo for Paper **LITune: An End-to-End Automatic Tuning System for Learned Index via Deep Reinforcement Learning**
 
-Track Name: Research Paper 4th Submission Round
+Track Name: Research Paper Volumn 18
 
-Paper ID: 827
 
 
 ## 1. Prerequisites:
