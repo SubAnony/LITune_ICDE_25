@@ -1,4 +1,4 @@
-# LITune SIGMOD 2024 Setup and Evaluation Guide
+# LITune VLDB 2025 Setup and Evaluation Guide
 
 
 This is the code repo for Paper **LITune: Tuning Learned Index Using Deep Reinforcement Learning**
