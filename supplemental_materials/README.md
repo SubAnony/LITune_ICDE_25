@@ -26,7 +26,7 @@ Evaluations with shifting data adhere to the tumbling window strategy, partition
 | Write-Heavy (WH) | 120M | 40M | 3:1 | 12M | 4M | 3:1 |
 
 
-### E2E Performance When Limiting the Tuning Budgets
+## E2E Performance When Limiting the Tuning Budgets
 
 We conducted an analysis on the tuning performance when varying the tuning time budgets, which reflects the considerations for tuning time during online use. Initially, a "Limited Time Budget" examination was carried out, where the tuning process was allotted a timeframe between 50s and 250s. This timeframe is designed to simulate environments where swift decision-making and system adaptability are crucial.
 
