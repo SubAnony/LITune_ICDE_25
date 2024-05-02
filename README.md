@@ -7,6 +7,8 @@ Track Name: Research Paper Volumn 18
 
 Paper ID: 183
 
+You can check some supplemental info here: [Supplemental Materials](./supplemental_materials/README.md)
+
 
 ## 1. Prerequisites:
 * Ensure you have `g++` installed with support for `C++17` and the required flags.
