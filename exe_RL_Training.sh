@@ -20,7 +20,7 @@ python3 ./scripts/RL_controller_offline.py --RL_policy DDPG --load_model default
 
 
 #!/bin/bash
-# Uncomment the following lines for Transfer RL training pipeline
+# Uncomment the following lines for Meta RL training pipeline
 # EPOCHS=100
 # VALIDATION_INTERVAL=10
 
