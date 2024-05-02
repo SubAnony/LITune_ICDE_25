@@ -1,6 +1,7 @@
 echo "Start Testing Streaming Data......"
 
 echo "RL eval"
+# Default RL model is Vanilla DDPG, you can replace it by DDPG_Context, TD3
 python3 ./scripts/RL_eval.py --RL_policy DDPG --Index $2 --load_model default --seed 0 --query_type $1
 
 wait

@@ -21,7 +21,7 @@ from utils import utils
 from agents import TD3
 from envs.env import LinearFitting, PGMIndex,ALEXIndex,CARMIIndex
 from envs.linear_fitting import Linear_model
-from agents import DDPG
+from agents import TD3, DDPG, dqn, DDPG_Context
 from agents import dqn
 
 
@@ -157,7 +157,10 @@ class PretrainedRLModel:
         "discount": args.discount,
         "tau": args.tau,
         } 
-        self.model_online = DDPG.DDPG(**kwargs)
+        if args.RL_policy == "DDPG":
+            self.model_online = DDPG.DDPG(**kwargs)
+        else:
+            self.model_online = DDPG_Context.DDPG(**kwargs)
         self.model_online.load(f"./rlmodels/{policy_file}")
         # self.optimized_data=args.online_data
         print("Online model initialized with pre-trained data.")
@@ -233,7 +236,11 @@ class OfflineRLModel:
         "discount": args.discount,
         "tau": args.tau,
         } 
-        self.model_offline = DDPG.DDPG(**kwargs)
+        if args.RL_policy == "DDPG":
+            self.model_offline = DDPG.DDPG(**kwargs)
+        else:
+            self.model_offline = DDPG_Context.DDPG(**kwargs)
+        
         self.model_offline.load(f"./rlmodels/{policy_file}")
         
         self.replay_buffer = utils.ReplayBuffer(self.state_dim, self.action_dim)
@@ -393,7 +400,7 @@ if __name__ == "__main__":
     # system.run()
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--RL_policy", default="DDPG") # Policy name (TD3, DDPG, SAC or DDPG)
+    parser.add_argument("--RL_policy", default="DDPG") # Policy name (TD3, DDPG, SAC or DDPG_Context)
     parser.add_argument("--data_file", default='data_11')
     parser.add_argument("--Index", default='ALEX')
     parser.add_argument("--search_method", default='RL', help="method to use")

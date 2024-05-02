@@ -222,6 +222,7 @@ wait
 
 
 echo "RL eval, budget $search_budget"
+# Default RL model is Vanilla DDPG, you can replace it by DDPG_Context, TD3
 
 python3 ./scripts/RL_eval_single.py --RL_policy DDPG --Index $2 --load_model default --data_file $file_name --search_budget $search_budget --seed $seed_value --query_type $1
 

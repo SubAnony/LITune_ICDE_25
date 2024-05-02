@@ -16,11 +16,15 @@ echo "Start Training......"
 echo "RL Training"
 
 # Simple Episodic Training
+
+# Default RL model is Vanilla DDPG, you can replace it by DDPG_Context, TD3
 python3 ./scripts/RL_controller_offline.py --RL_policy DDPG --load_model default --save_model True --Index $2 --query_type $1
 
+# Supporting Meta-RL Training
+# python3 ./scripts/meta_RL_offline.py --RL_policy DDPG --load_model default --save_model True --Index $2 --query_type $1
 
 #!/bin/bash
-# Uncomment the following lines for Meta RL training pipeline
+# Uncomment the following lines for Simplified Meta RL training pipeline
 # EPOCHS=100
 # VALIDATION_INTERVAL=10
 

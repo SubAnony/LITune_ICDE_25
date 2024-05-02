@@ -23,7 +23,7 @@ from utils import utils
 from agents import TD3
 from envs.env import LinearFitting, PGMIndex,ALEXIndex,CARMIIndex
 from envs.linear_fitting import Linear_model
-from agents import DDPG
+from agents import TD3, DDPG, dqn, DDPG_Context
 from agents import dqn
 
 
@@ -114,7 +114,7 @@ def eval_policy(policy, data, search_time, query_type):
 if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
-    parser.add_argument("--RL_policy", default="DDPG") # Policy name (TD3, DDPG, SAC or DDPG)
+    parser.add_argument("--RL_policy", default="DDPG") # Policy name (TD3, DDPG, SAC or DDPG_Context)
     parser.add_argument("--data_file", default='data_0')
     parser.add_argument("--search_budget", default=150, type=int)    # search time budget, seconds
     parser.add_argument("--Index", default='PGM')
@@ -221,28 +221,28 @@ if __name__ == "__main__":
         "tau": args.tau,
         } 
 
-            # Initialize policy
+    # Initialize policy
     if args.RL_policy == "TD3":
-            # Target policy smoothing is scaled wrt the action scale
-            kwargs["policy_noise"] = args.policy_noise * max_action
-            kwargs["noise_clip"] = args.noise_clip * max_action
-            kwargs["policy_freq"] = args.policy_freq
-            policy = TD3.TD3(**kwargs)
-
-            # print("check point 1")
+        # Target policy smoothing is scaled wrt the action scale
+        kwargs["policy_noise"] = args.policy_noise * max_action
+        kwargs["noise_clip"] = args.noise_clip * max_action
+        kwargs["policy_freq"] = args.policy_freq
+        policy = TD3.TD3(**kwargs)
 
     elif args.RL_policy == "DQN":
 
-            kwargs_dqn = {
-            "state_dim": state_dim,
-            "action_dim": action_dim,
-            } 
+        kwargs_dqn = {
+        "state_dim": state_dim,
+        "action_dim": action_dim,
+        } 
 
-            policy = dqn.DQN(**kwargs_dqn)
-
-
+        policy = dqn.DQN(**kwargs_dqn)
+        
+    elif args.RL_policy == "DDPG":
+        policy = DDPG.DDPG(**kwargs)
     else:
-            policy = DDPG.DDPG(**kwargs)
+        policy = DDPG_Context.DDPG(**kwargs)
+
 
     
     if args.Index == "PGM":

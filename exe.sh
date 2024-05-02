@@ -37,6 +37,7 @@ python3 ./scripts/controller.py --search_method grid_search --data_file $file_na
 wait
 
 echo "RL"
+# Default RL model is Vanilla DDPG, you can replace it by DDPG_Context, TD3
 python3 ./scripts/RL_controller.py --RL_policy DDPG --data_file $file_name --save_model False --Index $2 --seed 0 --query_type $1 --load_model default
 # python3 RL_controller.py --RL_policy DDPG --data_file $file_name --save_model False --Index $2 --seed 1 --query_type $1
 # python3 RL_controller.py --RL_policy DDPG --data_file $file_name --save_model False --Index $2 --seed 2 --query_type $1

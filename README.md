@@ -55,6 +55,7 @@ For a more extensive list of options and flexible configurations/arguments, delv
 > - Output evalutation results to `./logs`
 > - For all evaluations, repeat with `query_type` as `read-heavy` and `write-heavy` as mentioned
 > - Sample queries and workloads can be found in `./Index/Alex/index_test.cpp` or `./Index/CARMI/index_test.cpp`
+> - For the RL-based tuner, the default configuration utilizes the Vanilla DDPG model. If you wish to experiment with the Context DDPG model, which incorporates an LSTM-based context module, you can modify the arguments in the shell scripts accordingly. This adjustment will enable the use of a more sophisticated model that integrates historical contexts of safe explorations into its decision-making process.
 
 
 **Pre-training LITune-RL**:

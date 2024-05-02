@@ -23,7 +23,7 @@ from utils import utils
 from agents import TD3
 from envs.env import LinearFitting, PGMIndex,ALEXIndex,CARMIIndex
 from envs.linear_fitting import Linear_model
-from agents import DDPG
+from agents import TD3, DDPG, dqn, DDPG_Context
 from agents import dqn
 
 
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--RL_policy", default="TD3") # Policy name (TD3, DDPG, SAC or DDPG)
+    parser.add_argument("--RL_policy", default="DDPG") # Policy name (TD3, DDPG, SAC or DDPG_Context)
     parser.add_argument("--data_file", default='data_0')
     parser.add_argument("--Index", default='PGM')
     parser.add_argument("--search_method", default='RL', help="method to use")
@@ -196,7 +196,7 @@ if __name__ == "__main__":
         "tau": args.tau,
     } 
 
-            # Initialize policy
+    # Initialize policy
     if args.RL_policy == "TD3":
         # Target policy smoothing is scaled wrt the action scale
         kwargs["policy_noise"] = args.policy_noise * max_action
@@ -212,10 +212,11 @@ if __name__ == "__main__":
         } 
 
         policy = dqn.DQN(**kwargs_dqn)
-
-
-    else:
+        
+    elif args.RL_policy == "DDPG":
         policy = DDPG.DDPG(**kwargs)
+    else:
+        policy = DDPG_Context.DDPG(**kwargs)
 
     if args.Index == "PGM":
         file_name = f"{args.RL_policy}_PGMIndex_{args.seed}"
