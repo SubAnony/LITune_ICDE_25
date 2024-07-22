@@ -1,4 +1,4 @@
-# LITune VLDB 2025 Setup and Evaluation Guide
+# LITune ICDE 2025 Setup and Evaluation Guide
 
 
 This is the code repo for Paper **LITune: An End-to-End Automatic Tuning System for Learned Index via Deep Reinforcement Learning**
@@ -18,7 +18,7 @@ You can check some supplemental info here: [Supplemental Materials](./supplement
 
 > ALEX: [GitHub Repository](https://github.com/microsoft/ALEX)
 
-> CARMI: [Research Paper](https://www.vldb.org/pvldb/vol15/p2679-gao.pdf)
+> CARMI: [Research Paper](https://www.ICDE.org/pICDE/vol15/p2679-gao.pdf)
 
 
 ## 3. Running Environment:
