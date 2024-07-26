@@ -40,3 +40,22 @@ Despite the very limited tuning budgets, LITune still outperforms other tuning m
 #### Figure: Runtime Performance with Limited Tuning Budget (CARMI)
 <img src="./CARMI_limitedB_perf.png" alt="Runtime Performance with Limited Tuning Budget for CARMI" width="900" height="600">
 
+## Hyperparameters for Neural Network and Reinforcement Learning Models
+
+| Hyperparameter      | Value    | Description                                            |
+|---------------------|----------|--------------------------------------------------------|
+| discount            | 0.99     | Discount factor                                        |
+| tau                 | 0.005    | Target network update rate                             |
+| policy_noise        | 0.2      | Noise added to target policy during critic update      |
+| noise_clip          | 0.5      | Range to clip target policy noise                      |
+| policy_freq         | 2        | Frequency of delayed policy updates                    |
+| actor_lr            | 1e-4     | Learning rate for the actor optimizer                  |
+| critic_lr           | 1e-4     | Learning rate for the critic optimizer                 |
+| context_hidden_size | [50]     | Hidden size for context module's GRU                   |
+| context_output_dim  | 30       | Output dimension for context module's linear layer     |
+| actor_hidden_sizes  | [256, 256] | Hidden sizes for actor's linear layers               |
+| critic_hidden_sizes | [256, 256] | Hidden sizes for critic's linear layers              |
+
+## Tunable Parameters for Learned Indexes 
+
+You can check details here: [ALEX parameters](./alex_parameters.txt), [CARMI parameters](./carmi_parameters.txt)
