@@ -59,3 +59,57 @@ Despite the very limited tuning budgets, LITune still outperforms other tuning m
 ## Tunable Parameters for Learned Indexes 
 
 You can check details here: [ALEX parameters](./alex_parameters.txt), [CARMI parameters](./carmi_parameters.txt)
+
+## Adaptive Training Pipeline for DRL Agent with Meta-RL Integration in Learned Index Tuning
+
+The following pseudocode outlines an adaptive training pipeline for a Deep Reinforcement Learning (DRL) agent with Meta-Reinforcement Learning (Meta-RL) integration. This pipeline is designed to optimize learned index tuning.
+
+```latex
+\begin{algorithm}[ht]
+\caption{Adaptive Training Pipeline for DRL Agent with Meta-RL Integration in Learned Index Tuning}
+\label{alg:adaptive_training_with_meta_rl}
+\begin{algorithmic}[1]
+\State \textbf{Input:} Query space $\mathcal{Q}$, Data distribution space $\mathcal{D}$, Learning rates $\alpha$ (task-specific) and $\beta$ (meta-update), discount factor $\gamma$, baseline function
+\State \textbf{Output:} A DRL agent pre-trained for deployment
+\State \textbf{Initialize} model parameters $\theta$
+\While{not converged}
+    \State Sample a batch of tuning instances $\mathcal{T}_i$ from $\mathcal{Q} \times \mathcal{D}$ for varied exposure
+    \ForAll{$\mathcal{T}_i$}
+        \State Reset sampler to task $\mathcal{T}_i$
+        \State Sample training episodes using current policy \( \pi_\theta \)
+        \State Fit baseline to training episodes
+        \State Compute advantages using GAE with parameter $\tau$
+        \State Normalize advantages
+        \State Compute inner loss \( L_{\mathcal{T}_i}(f_\theta) \)
+        \State Compute adapted parameters with gradient descent: 
+        \[
+        \theta_i' = \theta - \alpha \nabla_{\theta} L_{\mathcal{T}_i}(f_\theta)
+        \]
+        \State Sample validation episodes using adapted policy \( \pi_{\theta_i'} \)
+        \State Store \((\text{train\_episodes}, \text{valid\_episodes})\) for $\mathcal{T}_i$
+    \EndFor
+    \State Perform MAML meta-update:
+    \State Compute meta-loss:
+    \[
+    \text{Meta-Loss} = \sum_{\mathcal{T}_i} L_{\mathcal{T}_i}(f_{\theta_i'})
+    \]
+    \State Compute gradients of meta-loss with respect to $\theta$
+    \State Update $\theta$ using gradient descent with learning rate $\beta$:
+    \[
+    \theta \leftarrow \theta - \beta \nabla_{\theta} \sum_{\mathcal{T}_i} L_{\mathcal{T}_i}(f_{\theta_i'})
+    \]
+    \State \textbf{Regularize to combat overfitting:}
+    \State Apply weight decay (L2 regularization)
+    \State Apply gradient clipping to stabilize training
+    \State Validate against validation set to ensure performance
+    \If{validation performance improves}
+        \State Update the agent to new parameters
+    \EndIf
+    \State Evaluate convergence criteria
+\EndWhile
+\State \textbf{return} Pre-trained DRL agent
+\end{algorithmic}
+\end{algorithm}
+
+```
+
