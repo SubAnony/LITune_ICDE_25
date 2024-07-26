@@ -3,9 +3,9 @@
 
 This is the code repo for Paper **LITune: An End-to-End Automatic Tuning System for Learned Index via Deep Reinforcement Learning**
 
-Track Name: Research Paper Volumn 18
+Track Name: RESEARCH PAPER FIRST SUBMISSION CYCLE
 
-Paper ID: 183
+Paper ID: 94
 
 You can check some supplemental info here: [Supplemental Materials](./supplemental_materials/README.md)
 
