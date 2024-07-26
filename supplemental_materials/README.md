@@ -113,4 +113,4 @@ The following pseudocode outlines an adaptive training pipeline for a Deep Reinf
 
 ```
 
-<img src="./algo.png" alt="Overview of Meta-RL training pipeline" width="1000" height="1200">
+<img src="./algo.png" alt="Overview of Meta-RL training pipeline" width="1000" height="1000">
